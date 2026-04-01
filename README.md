@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<b>critan</b>
+<b>Cristan</b>
 </p>
 
 
@@ -183,7 +183,7 @@ If you find this repository useful, please consider giving a ⭐ and citing our 
 ```bibtex
 @misc{toolorchestra,
       title={ToolOrchestra: Elevating Intelligence via Efficient Model and Tool Orchestration}, 
-      author={critan},
+      author={Cristan},
       year={2025},
       eprint={2511.21689},
       archivePrefix={arXiv},

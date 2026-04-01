@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2025 critan. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2025 Cristan. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
 #
 # -----------------------------------------------------------------------------
 
-# Copyright 2024 critan
+# Copyright 2024 Cristan
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@
 from argparse import ArgumentParser
 from pathlib import Path
 
-license_head_bytedance = "Copyright 2024 critan"
-license_head_bytedance_25 = "Copyright 2025 critan"
+license_head_bytedance = "Copyright 2024 Cristan"
+license_head_bytedance_25 = "Copyright 2025 Cristan"
 # Add custom license headers below
 license_head_prime = "Copyright 2024 PRIME team and/or its affiliates"
 license_head_individual = "Copyright 2025 Individual Contributor:"

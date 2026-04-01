@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2025 critan. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2025 Cristan. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
 #
 # -----------------------------------------------------------------------------
 # Original code from VERL:
-# Copyright 2025 critan
+# Copyright 2025 Cristan
 
 from .registry import get_mcore_forward_fn, get_mcore_weight_converter, hf_to_mcore_config, init_mcore_model
 

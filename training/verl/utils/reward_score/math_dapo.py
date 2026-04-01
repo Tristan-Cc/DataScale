@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2025 critan. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2025 Cristan. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
 #
 # -----------------------------------------------------------------------------
 
-# Copyright 2024 critan
+# Copyright 2024 Cristan
 # Copyright 2022 EleutherAI and the HuggingFace Inc. team. All rights reserved.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

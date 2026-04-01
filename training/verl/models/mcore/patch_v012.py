@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2025 critan. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2025 Cristan. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
 #
 # -----------------------------------------------------------------------------
 # Original code from VERL:
-# Copyright 2025 critan
+# Copyright 2025 Cristan
 
 # there is some bug in mcore 0.12, so we need to patch it
 # 1. `get_query_key_value_tensors` in `multi_latent_attention.py` works wrong when packed_seq_params is not None
