@@ -12,10 +12,7 @@
 <b>critan</b>
 </p>
 
-<p align="center">
-<b>NVIDIA</b> &nbsp;·&nbsp; <b>The University of Hong Kong</b><br>
-<sup>*</sup>Equal Contribution
-</p>
+
 
 ---
 
@@ -70,7 +67,7 @@ export REPO_PATH="/path/to/this_repo"
 # Environment for Search API, please go to [Tavily](https://app.tavily.com/home) and apply for an API key.
 export TAVILY_KEY="TAVILY_KEY"
 export WANDB_API_KEY="WANDB_API_KEY"
-export OSS_KEY="OSS_KEY" # NVIDIA NGC key
+export OSS_KEY="OSS_KEY"
 export CLIENT_ID="CLIENT_ID"
 export CLIENT_SECRET="CLIENT_SECRET"
 

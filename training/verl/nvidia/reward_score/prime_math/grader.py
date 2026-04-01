@@ -5,29 +5,13 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# -----------------------------------------------------------------------------
-# Copyright (c) 2024, NVIDIA CORPORATION.  All rights reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 # Copyright (c) Microsoft Corporation.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -134,12 +118,11 @@ def is_digit(s):
 
 def normalize(answer, pi) -> str:
     # checking if answer is $<number> and removing $ in that case to compare
-    if isinstance(answer, str) and bool(re.match(r'\$\d+(\.\d+)?', answer)):
+    if isinstance(answer, str) and bool(re.match(r"\$\d+(\.\d+)?", answer)):
         return answer[1:]
 
     # checking if answer is <number>% or <number>\\% and removing %
-    if isinstance(answer, str) and (bool(re.match(r'^\d+(\.\d+)?%$', answer)) or
-                                    bool(re.match(r'^\d+(\.\d+)?\\%$', answer))):
+    if isinstance(answer, str) and (bool(re.match(r"^\d+(\.\d+)?%$", answer)) or bool(re.match(r"^\d+(\.\d+)?\\%$", answer))):
         return answer.replace("\\%", "").replace("%", "")
 
     # handle base
@@ -167,13 +150,12 @@ def handle_pi(string, pi):
 
         # Iterate over the string and find all occurrences of "\pi" with a valid previous character
         while idx != -1:
-
             if idx > 0 and string[idx - 1].isdigit():
                 # Replace "\pi" with "*math.pi" if the previous character is a digit
-                string = string[:idx] + f"*{pi}" + string[idx + 3:]
+                string = string[:idx] + f"*{pi}" + string[idx + 3 :]
             else:
                 # Replace "\pi" with "1*math.pi" if the previous character is not a digit
-                string = string[:idx] + f"1*{pi}" + string[idx + 3:]
+                string = string[:idx] + f"1*{pi}" + string[idx + 3 :]
 
             # Find the next occurrence of "\pi"
             idx = string.find("\pi", idx + 1)
@@ -187,12 +169,7 @@ def handle_pi(string, pi):
     return string
 
 
-def math_equal(prediction: Union[bool, float, str],
-               reference: Union[float, str],
-               include_percentage: bool = True,
-               tolerance: float = 1e-4,
-               timeout: float = 10.0,
-               pi: float = math.pi) -> bool:
+def math_equal(prediction: Union[bool, float, str], reference: Union[float, str], include_percentage: bool = True, tolerance: float = 1e-4, timeout: float = 10.0, pi: float = math.pi) -> bool:
     """
     Exact match of math if and only if:
     1. numerical equal: both can convert to float and are equal
@@ -242,9 +219,7 @@ def math_equal(prediction: Union[bool, float, str],
     prediction = format_intervals(prediction)
 
     pred_str, ref_str = prediction, reference
-    if (prediction.startswith("[") and prediction.endswith("]") and
-            not reference.startswith("(")) or (prediction.startswith("(") and prediction.endswith(")") and
-                                               not reference.startswith("[")):
+    if (prediction.startswith("[") and prediction.endswith("]") and not reference.startswith("(")) or (prediction.startswith("(") and prediction.endswith(")") and not reference.startswith("[")):
         pred_str = pred_str.strip("[]()")
         ref_str = ref_str.strip("[]()")
     for s in ["{", "}", "(", ")"]:
@@ -254,15 +229,11 @@ def math_equal(prediction: Union[bool, float, str],
         return True
 
     ## [a, b] vs. [c, d], return a==c and b==d
-    if (prediction and reference and prediction[0] in "([" and prediction[-1] in ")]" and
-            prediction[0] == reference[0] and prediction[-1] == reference[-1]):
+    if prediction and reference and prediction[0] in "([" and prediction[-1] in ")]" and prediction[0] == reference[0] and prediction[-1] == reference[-1]:
         pred_parts = prediction[1:-1].split(",")
         ref_parts = reference[1:-1].split(",")
         if len(pred_parts) == len(ref_parts):
-            if all([
-                    math_equal(pred_pt, ref_pt, include_percentage, tolerance)
-                    for pred_pt, ref_pt in zip(pred_parts, ref_parts)
-            ]):
+            if all([math_equal(pred_pt, ref_pt, include_percentage, tolerance) for pred_pt, ref_pt in zip(pred_parts, ref_parts)]):
                 return True
 
     if "," in prediction and "," in reference:
@@ -270,23 +241,17 @@ def math_equal(prediction: Union[bool, float, str],
         ref_parts = [item.strip() for item in reference.split(",")]
 
         if len(pred_parts) == len(ref_parts):
-            if all([
-                    math_equal(pred_parts[i], ref_parts[i], include_percentage, tolerance)
-                    for i in range(len(pred_parts))
-            ]):
+            if all([math_equal(pred_parts[i], ref_parts[i], include_percentage, tolerance) for i in range(len(pred_parts))]):
                 return True
             else:
                 return False
 
     # if we have point == tuple of values
     if prediction.startswith("Point") and reference[0] == "(" and reference[-1] == ")":
-        pred_parts = prediction[prediction.find("(") + 1:-1].split(",")
+        pred_parts = prediction[prediction.find("(") + 1 : -1].split(",")
         ref_parts = reference[1:-1].split(",")
         if len(pred_parts) == len(ref_parts):
-            if all([
-                    math_equal(pred_pt, ref_pt, include_percentage, tolerance)
-                    for pred_pt, ref_pt in zip(pred_parts, ref_parts)
-            ]):
+            if all([math_equal(pred_pt, ref_pt, include_percentage, tolerance) for pred_pt, ref_pt in zip(pred_parts, ref_parts)]):
                 return True
 
     # if reference is a matrix
@@ -295,10 +260,7 @@ def math_equal(prediction: Union[bool, float, str],
             pred_matrix = parse_expr(prediction)
             ref_matrix_items = reference.split()[1:-1:2]
             if len(pred_matrix) == len(ref_matrix_items):
-                if all([
-                        math_equal(pred, ref, include_percentage, tolerance)
-                        for ref, pred in zip(ref_matrix_items, pred_matrix)
-                ]):
+                if all([math_equal(pred, ref, include_percentage, tolerance) for ref, pred in zip(ref_matrix_items, pred_matrix)]):
                     return True
         except Exception:
             pass
@@ -307,15 +269,11 @@ def math_equal(prediction: Union[bool, float, str],
             try:
                 pred_matrix = eval(prediction)
                 # ref_matrix_items = reference.split()[1:-1:2]
-                ref_matrix_items = reference.lstrip("\\begin{pmatrix}").lstrip("\begin{pmatrix}").rstrip(
-                    "\\end{pmatrix}").rstrip("\end{pmatrix}")
+                ref_matrix_items = reference.lstrip("\\begin{pmatrix}").lstrip("\begin{pmatrix}").rstrip("\\end{pmatrix}").rstrip("\end{pmatrix}")
                 ref_matrix_items = ref_matrix_items.split("\\")
                 ref_matrix_items = [row.split("&") if "&" in row else row for row in ref_matrix_items]
                 if len(pred_matrix) == len(ref_matrix_items):
-                    if all([
-                            math_equal(pred, ref, include_percentage, tolerance)
-                            for ref, pred in zip(ref_matrix_items, pred_matrix)
-                    ]):
+                    if all([math_equal(pred, ref, include_percentage, tolerance) for ref, pred in zip(ref_matrix_items, pred_matrix)]):
                         return True
             except Exception:
                 pass
